@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <record id="seq_student_guardian"
+            model="ir.sequence">
+
+            <field name="name">Guardian Sequence</field>
+
+            <field name="code">student.guardian</field>
+
+            <field name="prefix">GRD</field>
+
+            <field name="padding">5</field>
+
+            <field name="number_increment">1</field>
+
+            <field name="number_next">1</field>
+
+        </record>
+
+    </data>
+
+</odoo>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- ===================== -->
+        <!-- List View -->
+        <!-- ===================== -->
+        <record id="view_student_tree" model="ir.ui.view">
+            <field name="name">student.student.tree</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+
+                <list
+                    decoration-success="marks &gt;= 80"
+                    decoration-warning="marks &gt;= 50 and marks &lt; 80"
+                    decoration-danger="marks &lt; 50">
+
+
+                    <field name="student_id" />
+                    <field name="name" />
+                    <field name="age" />
+                    <field name="gender" />
+                    <field name="email" />
+                    <field name="marks" />
+                    <field name="result" />
+                    <field name="admission_date" />
+                    <field name="active" />
+
+                </list>
+            </field>
+        </record>
+
+        <!-- ===================== -->
+        <!-- Form View -->
+        <!-- ===================== -->
+        <record
+            id="view_student_form" model="ir.ui.view">
+            <field name="name">student.student.form</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+
+                        <button
+                            name="action_admit"
+                            string="Admit"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'" />
+
+                        <button
+                            name="action_graduate"
+                            string="Graduate"
+                            type="object"
+                            class="btn-success"
+                            invisible="state != 'admitted'" />
+
+                        <button
+                            name="action_reset"
+                            string="Reset"
+                            type="object"
+                            invisible="state == 'draft'" />
+
+                        <field
+                            name="state"
+                            widget="statusbar"
+                            statusbar_visible="draft,admitted,graduated" />
+
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+
+                            <button
+                                name="action_view_subjects"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book">
+
+                                <field
+                                    name="subject_count"
+                                    widget="statinfo"
+                                    string="Subjects" />
+
+                            </button>
+
+                        </div>
+                        <div class="oe_button_box" name="button_box">
+
+                            <button
+                                name="action_view_subjects"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book">
+
+                                <field
+                                    name="subject_count"
+                                    widget="statinfo"
+                                    string="Subjects" />
+
+                            </button>
+
+                        </div>
+                        <div class="oe_title">
+                            <label for="student_id" />
+                            <h2>
+                                <field name="student_id" readonly="1" />
+                            </h2>
+
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+
+
+                        <group>
+
+                            <!-- Left Side -->
+                            <group>
+                                <field name="age" />
+                                <field name="gender" />
+                                <field name="admission_date" />
+                            </group>
+                            <field name="guardian_ids" widget="many2many_tags" />
+
+                            <!-- Right Side -->
+                            <group>
+                                <field name="photo" widget="image" class="oe_avatar" />
+
+                                <field name="email" />
+                                <field name="marks" />
+                                <field name="result" readonly="1" />
+                                <field name="active" />
+
+                            </group>
+
+                        </group>
+
+                        <notebook>
+
+                            <page string="Notes">
+                                <field name="notes" />
+                            </page>
+
+                            <page string="Subjects">
+
+                                <field name="subject_ids">
+
+                                    <list editable="bottom">
+
+                                        <field name="name" />
+
+                                        <field name="marks" />
+
+                                    </list>
+
+                                </field>
+
+                            </page>
+
+                        </notebook>
+                        <notebook>
+
+                            <page string="Subjects">
+                                ...
+                            </page>
+                            <page string="Guardians">
+
+                                <field name="guardian_ids"
+                                    widget="many2many_tags" />
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- ===================== -->
+        <!-- Kanban View -->
+        <!-- ===================== -->
+        <record
+            id="view_student_kanban" model="ir.ui.view">
+            <field name="name">student.student.kanban</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+
+                <kanban>
+
+                    <templates>
+
+                        <t t-name="card">
+
+                            <div class="oe_kanban_card">
+
+                                <div class="text-center mb-2">
+                                    <field name="photo" widget="image" />
+                                </div>
+
+                                <h4 class="text-center">
+                                    <field name="name" />
+                                </h4>
+
+                                <div class="text-center text-muted">
+                                    <field name="student_id" />
+                                </div>
+
+                                <hr />
+
+                                <div>
+                                    <strong>Gender:</strong>
+                                    <field name="gender" />
+                                </div>
+
+                                <div>
+                                    <strong>Marks:</strong>
+                                    <field name="marks" />
+                                </div>
+
+                                <div>
+                                    <strong>Result:</strong>
+                                    <field name="result" />
+                                </div>
+
+                                <div>
+                                    <strong>Status:</strong>
+                                    <field name="state" />
+                                </div>
+
+                            </div>
+
+                        </t>
+
+                    </templates>
+
+                </kanban>
+
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record
+            id="view_student_search" model="ir.ui.view">
+            <field name="name">student.student.search</field>
+            <field name="model">student.student</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <!-- Search Fields -->
+
+
+                    <field
+                        name="student_id"
+                        filter_domain="[('student_id', 'ilike', self)]" />
+
+                    <field
+                        name="name"
+                        filter_domain="[('name', 'ilike', self)]" />
+
+                    <field
+                        name="email"
+                        filter_domain="[('email', 'ilike', self)]" />
+
+                    <!-- Active / Inactive -->
+                    <filter
+                        string="Active"
+                        name="active"
+                        domain="[('active','=',True)]" />
+
+                    <filter
+                        string="Inactive"
+                        name="inactive"
+                        domain="[('active','=',False)]" />
+
+                    <separator />
+
+                    <!-- Gender -->
+                    <filter
+                        string="Male"
+                        name="male"
+                        domain="[('gender','=','male')]" />
+
+                    <filter
+                        string="Female"
+                        name="female"
+                        domain="[('gender','=','female')]" />
+
+                    <separator />
+
+                    <!-- Result -->
+                    <filter
+                        string="Pass"
+                        name="pass"
+                        domain="[('result','=','pass')]" />
+
+                    <filter
+                        string="Fail"
+                        name="fail"
+                        domain="[('result','=','fail')]" />
+
+                    <separator />
+
+                    <!-- Marks -->
+                    <filter
+                        string="Excellent"
+                        name="excellent"
+                        domain="[('marks','>=',80)]" />
+
+                    <filter
+                        string="Average"
+                        name="average"
+                        domain="[('marks','>=',50),('marks','&lt;',80)]" />
+
+                    <filter
+                        string="Weak"
+                        name="weak"
+                        domain="[('marks','&lt;',50)]" />
+
+                    <separator />
+
+                    <!-- Status -->
+                    <filter
+                        string="Draft"
+                        name="draft"
+                        domain="[('state','=','draft')]" />
+
+                    <filter
+                        string="Admitted"
+                        name="admitted"
+                        domain="[('state','=','admitted')]" />
+
+                    <filter
+                        string="Graduated"
+                        name="graduated"
+                        domain="[('state','=','graduated')]" />
+
+                    <separator />
+
+                    <!-- Group By -->
+                    <group>
+
+                        <filter
+                            string="Gender"
+                            name="group_gender"
+                            context="{'group_by':'gender'}" />
+
+                        <filter
+                            string="Admission Date"
+                            name="group_admission"
+                            context="{'group_by':'admission_date'}" />
+
+                        <filter
+                            string="Status"
+                            name="group_state"
+                            context="{'group_by':'state'}" />
+
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <!-- ===================== -->
+        <!-- Action -->
+        <!-- ===================== -->
+        <record
+            id="action_student" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">student.student</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+
+        <!-- Root Menu -->
+        <menuitem
+            id="menu_student_root"
+            name="Student Management"
+            sequence="10"
+            web_icon="student_management,static/description/icon.png" />
+        <menuitem
+            id="menu_student"
+            name="Students"
+            parent="menu_student_root"
+            action="action_student"
+            sequence="1" />
+
+    </data>
+</odoo>

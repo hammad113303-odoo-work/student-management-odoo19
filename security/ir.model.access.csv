@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_manager,student.manager,model_student_student,student_management.group_student_manager,1,1,1,1
+access_student_user,student.user,model_student_student,student_management.group_student_user,1,0,0,0
+access_student_internal_user,student.internal.user,model_student_student,base.group_user,1,0,0,0
+access_subject_manager,subject.manager,model_student_subject,student_management.group_student_manager,1,1,1,1
+access_subject_user,subject.user,model_student_subject,student_management.group_student_user,1,0,0,0
+access_subject_internal_user,subject.internal.user,model_student_subject,base.group_user,1,0,0,0
+access_class_manager,class.manager,model_student_class,student_management.group_student_manager,1,1,1,1
+access_class_user,class.user,model_student_class,student_management.group_student_user,1,0,0,0
+access_class_internal_user,class.internal.user,model_student_class,base.group_user,1,0,0,0
+access_teacher_manager,teacher.manager,model_student_teacher,student_management.group_student_manager,1,1,1,1
+access_teacher_user,teacher.user,model_student_teacher,student_management.group_student_user,1,0,0,0
+access_teacher_internal_user,teacher.internal.user,model_student_teacher,base.group_user,1,0,0,0
+access_guardian_manager,guardian.manager,model_student_guardian,student_management.group_student_manager,1,1,1,1
+access_guardian_user,guardian.user,model_student_guardian,student_management.group_student_user,1,0,0,0
+access_guardian_internal_user,guardian.internal.user,model_student_guardian,base.group_user,1,0,0,0

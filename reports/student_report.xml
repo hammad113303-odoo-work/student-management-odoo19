@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="student_report_template">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <h2 class="text-center">
+                            Student Report
+                        </h2>
+
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <th>Student ID</th>
+                                <td>
+                                    <span t-field="o.student_id" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Name</th>
+                                <td>
+                                    <span t-field="o.name" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Age</th>
+                                <td>
+                                    <span t-field="o.age" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Gender</th>
+                                <td>
+                                    <span t-field="o.gender" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <span t-field="o.email" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Admission Date</th>
+                                <td>
+                                    <span t-field="o.admission_date" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Marks</th>
+                                <td>
+                                    <span t-field="o.marks" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Result</th>
+                                <td>
+                                    <span t-field="o.result" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    <span t-field="o.state" />
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </t>
+
+            </t>
+
+        </t>
+
+    </template>
+
+</odoo>

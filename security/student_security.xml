@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Module Category (unchanged, still ir.module.category) -->
+    <record id="module_category_student_management" model="ir.module.category">
+        <field name="name">Student Management</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- NEW in Odoo 19: privilege links the category to the groups -->
+    <record id="privilege_student_management" model="res.groups.privilege">
+        <field name="name">Student Management</field>
+        <field name="category_id" ref="module_category_student_management" />
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Base group: can view students/subjects -->
+    <record id="group_student_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="privilege_student_management" />
+    </record>
+
+    <!-- Manager group: can create/edit/delete, automatically -->
+    <!-- includes User's rights via implied_ids (plural now) -->
+    <record id="group_student_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="privilege_student_management" />
+        <field name="implied_ids" eval="[(6, 0, [ref('group_student_user')])]" />
+    </record>
+
+</odoo>
