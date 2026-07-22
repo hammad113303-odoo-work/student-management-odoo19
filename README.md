@@ -1,4 +1,13 @@
 # 🎓 Student Management System (Odoo 19)
+![Odoo](https://img.shields.io/badge/Odoo-19-purple)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![License](https://img.shields.io/badge/License-LGPL--3-green)
+![Status](https://img.shields.io/badge/Status-In%20Development-orange)
+
+
+> A complete Student Management System developed in **Odoo 19** for learning Functional and Technical Development.
+
+> # 🎓 Student Management System (Odoo 19)
 
 ## 📖 Overview
 
